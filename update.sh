@@ -4,4 +4,4 @@ git add *
 echo 'Introduzca un comentario para el commit, debe ser distinto a ACTUALIZACION'
 read var
 git commit -m ""$var""
-git push -u origin master
+git push -u origin desarrollo
