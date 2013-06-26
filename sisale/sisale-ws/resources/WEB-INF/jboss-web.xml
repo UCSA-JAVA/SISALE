@@ -1,0 +1,4 @@
+<jboss-web>
+	<context-root>korews</context-root>
+	<security-domain>java:/jaas/korews</security-domain>
+</jboss-web>

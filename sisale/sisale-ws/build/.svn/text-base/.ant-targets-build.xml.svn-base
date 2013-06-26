@@ -1,0 +1,6 @@
+checkstyle
+clean
+compile
+ivy-resolve
+java-doc
+packaging

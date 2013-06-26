@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="KOREWS_FILE" class="ch.qos.logback.core.FileAppender">
+		<file>${jboss.server.log.dir}/korews.log</file>
+
+		<encoder>
+			<pattern>%date %level [%file:%line] %msg%n</pattern>
+		</encoder>
+	</appender>
+		
+	<appender name="KOREWS_FILE_SQL" class="ch.qos.logback.core.FileAppender">
+		<file>${jboss.server.log.dir}/korews_sql.log</file>
+
+		<encoder>
+			<pattern>%date %level %logger{20} %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date %level %msg%n</pattern>
+		</encoder>
+	</appender>
+			
+	<logger name="py.com.vivicom.korews.config" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="KOREWS_FILE" />	
+	</logger>
+
+	<logger name="py.com.vivicom.korews" level="trace" additivity="false">
+		<appender-ref ref="KOREWS_FILE" />	
+	</logger>
+
+	<logger name="java.sql" level="debug" additivity="false">
+		<appender-ref ref="KOREWS_FILE_SQL" />	
+	</logger>
+	
+	<logger name="py.com.vivicom.korews.persistence" level="trace" additivity="false">
+		<appender-ref ref="KOREWS_FILE_SQL" />	
+	</logger>
+	
+	
+	<logger name="org.springframework" level="trace" additivity="false">
+		<appender-ref ref="KOREWS_FILE" />	
+	</logger>
+	
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

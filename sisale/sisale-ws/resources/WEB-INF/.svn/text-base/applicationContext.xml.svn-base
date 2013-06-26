@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:jee="http://www.springframework.org/schema/jee"
+		xmlns:drools="http://drools.org/schema/drools-spring"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+			http://drools.org/schema/drools-spring
+			http://anonsvn.jboss.org/repos/labs/labs/jbossrules/trunk/drools-container/drools-spring/src/main/resources/org/drools/container/spring/drools-spring-1.0.0.xsd">
+    
+    
+        
+	<!-- the main application context aware container -->
+	<bean id="applicationContextProvider" class="py.com.sif.esciladna.config.EsciladnaApplicationContextProvider" />
+			
+	<!-- application properties -->
+	<bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">         
+    	<property name="ignoreResourceNotFound"><value>true</value></property>
+    	<property name="locations">
+	        <list>
+	            <value>classpath:build.number</value>
+	            <value>classpath:build.properties</value>
+	        </list>
+    	</property>
+	</bean>
+
+	<!-- publish locally all properties loaded -->
+	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="false" />
+		<property name="properties" ref="properties" />
+	</bean>
+	
+	<!-- application info bean -->
+	<bean id="applicationInfo" class="py.com.sif.esciladna.config.ApplicationInfo">
+		<property name="vendor" value="${implementation.vendor}" />	
+		<property name="version" value="${implementation.version}" />
+		<property name="artifact" value="${artifact.name}" />
+<!-- 		<property name="build" value="${build.number}" /> -->
+	</bean>
+	
+	<bean id="dataSourceSofia" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:esciladnaDS" />
+	</bean>
+	
+	<bean id="dataSourceThot" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:ThotDS" />
+	</bean>
+	
+	<bean id="dataSourceEscila" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:EscilaDS" />
+	</bean>	
+		
+	<bean id="sofiaSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceSofia" />
+		<property name="configLocation" value="classpath:py/com/sif/esciladna/persistence/mybatis/oracle/configuration-sofia.xml"/>
+	</bean>
+	
+	<bean id="sofiaSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sofiaSqlSessionFactory" />
+	</bean>
+	
+	<bean id="thotSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceThot" />
+		<property name="configLocation" value="classpath:py/com/sif/esciladna/persistence/mybatis/postgres/configuration-thot.xml"/>
+	</bean>
+	
+	<bean id="thotSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	    <constructor-arg ref="thotSqlSessionFactory"/>
+	</bean>
+	
+	<bean id="escilaSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceEscila" />
+		<property name="configLocation" value="classpath:py/com/sif/esciladna/persistence/mybatis/oracle/configuration-escila.xml"/>
+	</bean>
+	
+	<bean id="escilaSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	    <constructor-arg ref="escilaSqlSessionFactory"/>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager" />
+<!-- 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+<!-- 		<property name="dataSource" ref="dataSourceEscila" /> -->
+<!-- 	</bean> -->
+		
+	<bean id="sofiaDAO" 	class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="py.com.sif.esciladna.persistence.dao.SofiaDAO" />
+		<property name="sqlSessionFactory" ref="sofiaSqlSessionFactory" />
+		<property name="sqlSessionTemplate" ref="sofiaSqlSession" /> 
+	</bean>
+
+	<bean id="thotDAO" 	class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="py.com.sif.esciladna.persistence.dao.ThotDAO" />
+		<property name="sqlSessionFactory" ref="thotSqlSessionFactory" />
+		<property name="sqlSessionTemplate" ref="thotSqlSession" /> 
+	</bean>
+	
+	<bean id="escilaDAO" 	class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="py.com.sif.esciladna.persistence.dao.EscilaDAO" />
+		<property name="sqlSessionFactory" ref="escilaSqlSessionFactory" />
+		<property name="sqlSessionTemplate" ref="escilaSqlSession" /> 
+	</bean>
+
+	<bean id="convertTipoPersonaDna" class="py.com.sif.esciladna.business.ConvertTipoPersona">
+		<property name="sofiaDAO"><ref bean="sofiaDAO" /></property>
+	</bean>
+		
+	<bean id="esciladnaService" class="py.com.sif.esciladna.web.rest.impl.Grone">
+		<property name="sofiaDAO"><ref bean="sofiaDAO" /></property>
+		<property name="thotDAO"> <ref bean="thotDAO" /> </property>
+		<property name="valTipoPersona"> <ref bean="convertTipoPersonaDna" /> </property>
+	</bean>
+	
+	<bean id="escilaResourceService" class="py.com.sif.esciladna.web.rest.impl.ResourceGrone">
+		<property name="escilaDAO"><ref bean="escilaDAO" /></property>
+		<property name="sofiaDAO"><ref bean="sofiaDAO" /></property>
+		<property name="thotDAO"> <ref bean="thotDAO" /> </property>
+	</bean>
+	
+</beans>

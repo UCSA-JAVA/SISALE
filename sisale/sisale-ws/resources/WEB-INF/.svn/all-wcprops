@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/svndna/!svn/ver/5609/trunk/escila/escila-dna-ext/resources/WEB-INF
+END
+jboss-web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/svndna/!svn/ver/3676/trunk/escila/escila-dna-ext/resources/WEB-INF/jboss-web.xml
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/svndna/!svn/ver/5609/trunk/escila/escila-dna-ext/resources/WEB-INF/applicationContext.xml
+END
+jboss-deployment-structure.xml
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/svndna/!svn/ver/3676/trunk/escila/escila-dna-ext/resources/WEB-INF/jboss-deployment-structure.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/svndna/!svn/ver/3676/trunk/escila/escila-dna-ext/resources/WEB-INF/web.xml
+END

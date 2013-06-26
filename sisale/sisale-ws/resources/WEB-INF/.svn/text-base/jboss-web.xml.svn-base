@@ -1,0 +1,4 @@
+<jboss-web>
+	<context-root>escila-dna-ext</context-root>
+	<security-domain>java:/jaas/escila</security-domain>
+</jboss-web>

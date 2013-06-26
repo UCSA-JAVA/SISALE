@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/svndna/!svn/ver/6253/trunk/escila/escila-dna-ext/build
+END
+build.properties
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/svndna/!svn/ver/5245/trunk/escila/escila-dna-ext/build/build.properties
+END
+ivy.properties
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/svndna/!svn/ver/3676/trunk/escila/escila-dna-ext/build/ivy.properties
+END
+ivy.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/svndna/!svn/ver/3676/trunk/escila/escila-dna-ext/build/ivy.xml
+END
+sun_checks.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/svndna/!svn/ver/3676/trunk/escila/escila-dna-ext/build/sun_checks.xml
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/svndna/!svn/ver/6253/trunk/escila/escila-dna-ext/build/build.xml
+END
+.ant-targets-build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/svndna/!svn/ver/3676/trunk/escila/escila-dna-ext/build/.ant-targets-build.xml
+END
+ivysettings.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/svndna/!svn/ver/5245/trunk/escila/escila-dna-ext/build/ivysettings.xml
+END

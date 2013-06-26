@@ -1,0 +1,15 @@
+<ivysettings>
+	<properties file="${ivy.settings.dir}/ivy.properties" />
+	<properties file="${ivy.settings.dir}/build.properties" />
+	
+	<settings defaultResolver="sisale-nexus"/>
+	<resolvers>
+		<ibiblio name="sisale-nexus" m2compatible="true" root="${sisale.nexus.public}" />
+		
+	</resolvers>
+	
+	<caches defaultCacheDir="${user.home}/.ivy2/${artifact.name}-default-cache"
+			resolutionCacheDir="${user.home}/.ivy2/${artifact.name}-resolve-cache" 
+			useOrigin="true"
+	/>
+</ivysettings>

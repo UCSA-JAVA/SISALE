@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+	
+	<info organisation="SIF" module="esciladna" />
+	
+	<configurations>
+		<conf name="default" description="develop-time configuration. won't make part of built artifact unless specified as runtime also" />
+		<conf name="runtime" description="runtime libraries. will go into WEB-INF/lib" />
+	</configurations>
+	
+	<dependencies> 
+		<dependency org="org.mybatis" name="mybatis" rev="3.1.0" conf="default,runtime->default" />
+		<dependency org="checkstyle" name="checkstyle" rev="5.0" conf="default" />
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.6.2" conf="default,runtime->default" /> 
+		<dependency org="ch.qos.logback" name="logback-core" rev="0.9.29" conf="default,runtime->default" />
+		<dependency org="ch.qos.logback" name="logback-classic"	rev="0.9.29" conf="default,runtime->default" />
+		
+		<dependency org="commons-digester" name="commons-digester" rev="2.1" conf="default,runtime->default" />
+		<dependency org="com.thoughtworks.xstream" name="xstream" rev="1.4.2" conf="default,runtime->default" />
+		<dependency org="org.apache.tomcat" name="servlet-api" rev="6.0.33"	conf="default" transitive="false" />
+<!-- 		<dependency org="org.apache.httpcomponents" name="httpclient" rev="4.1.2" conf="default,runtime->default"/> -->
+		<dependency org="org.jboss.resteasy" name="resteasy-jaxrs" 	rev="2.3.1.GA" conf="default,runtime->default" />
+<!-- 		<dependency org="org.jboss.resteasy" name="resteasy-jaxb-provider" 	rev="2.3.1.GA" conf="default,runtime->default" /> -->
+		<dependency org="org.jboss.resteasy" name="resteasy-jackson-provider" 	rev="2.2.2.GA" conf="default,runtime->default" />
+		<dependency org="javax.ws.rs" name="jsr311-api" rev="1.1.1" conf="default,runtime->default" />
+		<dependency org="commons-io" name="commons-io" 	rev="2.1" conf="default,runtime->default" />
+		<dependency org="org.codehaus.jackson" name="jackson-jaxrs"	rev="1.9.1" conf="default,runtime->default" />
+
+		
+		<dependency org="org.springframework" name="spring-jdbc" rev="3.0.6.RELEASE" transitive="false">
+			<artifact name="spring-jdbc" conf="default,runtime->default"/>
+		</dependency>
+		
+		<dependency org="org.springframework" name="spring-tx" rev="3.0.6.RELEASE" transitive="false">
+			<artifact name="spring-tx" conf="default,runtime->default"/>
+		</dependency> 
+		
+		<dependency org="org.springframework" name="spring-context" rev="3.0.6.RELEASE" transitive="false">
+			<artifact name="spring-context" conf="default,runtime->default"/>
+		</dependency>
+		
+		<dependency org="org.springframework" name="spring-core" rev="3.0.6.RELEASE" transitive="false">
+			<artifact name="spring-core" conf="default,runtime->default"/>
+		</dependency>
+		
+		<dependency org="org.springframework" name="spring-beans" rev="3.0.6.RELEASE" transitive="false">
+			<artifact name="spring-beans"  conf="default,runtime->default"/>
+		</dependency>
+		
+		<dependency org="org.springframework" name="spring-web" rev="3.0.6.RELEASE" transitive="false">
+			<artifact name="spring-web"  conf="default,runtime->default"/>
+		</dependency>
+		
+		<dependency org="org.springframework" name="spring-asm" rev="3.0.6.RELEASE" transitive="false">
+			<artifact name="spring-asm"  conf="default,runtime->default"/>
+		</dependency>
+		
+		<dependency org="org.springframework" name="spring-expression" rev="3.0.6.RELEASE" transitive="false">
+			<artifact name="spring-expression"  conf="default,runtime->default"/>
+		</dependency>
+		
+		<dependency org="org.springframework" name="spring-aop" rev="3.0.6.RELEASE" transitive="true">
+			<artifact name="spring-aop"  conf="default,runtime->default"/>
+		</dependency>
+		
+		<dependency org="org.mybatis" name="mybatis-spring" rev="1.1.0" conf="default,runtime->default" transitive="false"/>
+		
+		<dependency org="org.apache.struts" name="struts2-spring-plugin" rev="2.2.3.1" conf="default,runtime->default" transitive="false"/>
+				
+	</dependencies>	
+</ivy-module>
